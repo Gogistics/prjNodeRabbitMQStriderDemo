@@ -1,0 +1,21 @@
+{
+  "name": "nodejs_rabbitmq",
+  "version": "1.0.0",
+  "description": "Practice of Node.js with RabbitMQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node.js",
+    "RabbitMQ",
+    "Strider"
+  ],
+  "author": "RabbitMQ Node",
+  "license": "MIT",
+  "dependencies": {
+    "amqp": "^0.2.6",
+    "rabbit.js": "^0.4.4",
+    "socket.io": "^1.4.8"
+  }
+}
