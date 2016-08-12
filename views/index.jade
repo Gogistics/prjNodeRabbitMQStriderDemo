@@ -1,0 +1,21 @@
+doctype html
+html
+head
+  title= title
+body
+  h1= title
+  br
+  p= connectionStatus
+  p= exchangeStatus
+  p= queueStatus
+  hr
+  form(action='/start-server', method='post')
+    input(type='submit', value='Start the server')
+  form(action='/new-exchange', method='post')
+    input(type='submit', value='Establish an exchange')
+  form(action='/new-queue', method="post")
+    input(type='submit' value='Establish a message queue')
+  hr
+  if (queueStatus == 'The queue is ready for use!' && exchangeStatus == 'An exchange has been established!')
+    h2 BOOM! SUCCESS!
+    a(href='/message-service') Click here to go to the messaging service!

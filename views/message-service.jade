@@ -1,0 +1,12 @@
+doctype html
+html
+head
+  title= title
+body
+  h3 Please type in a message below:
+  form(action='/newMessage', method='post' onsubmit="setTimeout(function () { window.location.reload(); }, 500)")
+    input(type='text', name='newMessage')
+    input(type='submit', value='Submit new message')
+
+  h3 Here is the message you typed:
+  p= sentMessage
