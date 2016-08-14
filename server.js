@@ -79,16 +79,10 @@ app.post('/newMessage', function(req, res){
     app.message_title = 'Welcome to the messaging service';
     app.sent_message = msg.message;
 
-
     if(!res.headersSent){
       res.redirect('/message-service');
       res.end();
     }
-
-    //res.render('message-service.jade',{
-    //  title: 'You\'ve got mail!',
-    //  sentMessage: msg.message
-    //});
 
   });
 });
@@ -97,3 +91,4 @@ http.createServer(app).listen( app.get('port'), function(){
   console.log('RabbitMQ + Node.js app running!');
 });
 
+module.exports = app;
