@@ -1,0 +1,42 @@
+#!/bin/bash
+# Program:
+# renew docker contaner
+# History:
+# 08/12/2016
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export=PATH
+
+# check if redis container exist
+# development; rabbitmq_redis
+app_container='rabbitmq_redis'
+inspect_result=$(docker inspect $app_container)
+if [ "[]" == "$inspect_result" ]; then
+  echo "redis container without password does not exist and a new one will be created..."
+  # you may get FATAL CONFIG FILE ERROR if using redis-server by executing bash/sh scripts
+  docker run --name ${app_container} -d redis redis-server -p 6377:6379 --appendonly yes
+else
+  echo "redis container without password setting already exists"
+fi
+
+# staging and production; rabbitmq_redis_pwd
+# check if image exists
+cd ./my_redis/
+echo "Current dir is: "$PWD
+app_image='strider_rabbitmq/redis_pwd'
+inspect_result=$(docker inspect $app_image)
+if [ "[]" == "$inspect_result" ]; then
+  echo "redis image with password does not exist"
+  docker build -t ${app_image} .
+else
+  echo "redis image with password already exists"
+fi
+
+# check if container exists
+app_container='rabbitmq_redis_pwd'
+inspect_result=$(docker inspect $app_container)
+if [ "[]" == "$inspect_result" ]; then
+  echo "redis container with password does not exist and a new one will be created..."
+  docker run --name ${app_container} -d -p 127.0.0.1:6376:6379 -e REDIS_PASS=nodeRabbit168 strider_rabbitmq/redis_pwd
+else
+  echo "redis container with password already exists"
+fi
