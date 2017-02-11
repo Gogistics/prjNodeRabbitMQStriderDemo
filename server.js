@@ -20,7 +20,7 @@ app.queueStatus = 'No queue established';
 
 app.get('/', function(req, res){
   res.render('index.jade',{
-      title: 'Welcome to RabbitMQ and Node/Express on AppFog',
+      title: 'Demo of Node/Express with RabbitMQ on Gogistics',
       connectionStatus: app.connectionStatus,
       exchangeStatus: app.exchangeStatus,
       queueStatus: app.queueStatus
