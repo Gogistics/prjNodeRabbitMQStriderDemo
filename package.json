@@ -4,7 +4,7 @@
   "description": "Practice of Node.js with RabbitMQ",
   "main": "server.js",
   "scripts": {
-    "test": "./script/test"
+    "test": "./scripts/test"
   },
   "keywords": [
     "Node.js",
