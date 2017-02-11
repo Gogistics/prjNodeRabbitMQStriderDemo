@@ -31,15 +31,13 @@ inspect_result=$(docker inspect $app_container)
 if [ "[]" == "$inspect_result" ]; then
   echo "redis container without password does not exist and a new one will be created..."
   # you may get FATAL CONFIG FILE ERROR if using redis-server by executing bash/sh scripts
-  docker run --name ${app_container} -d -p ${REDIS_HOST}:6377:6379 redis redis-server --appendonly yes
+  docker run --name ${app_container} -d -p ${REDIS_HOST}:6379:6379 redis redis-server --appendonly yes
 else
   echo "redis container without password setting already exists"
 fi
 
 # staging and production; gogistics_redis_pwd
 # check if image exists
-cd ./my_redis/
-echo "Current dir is: "$PWD
 app_image='redis_pwd:v1'
 inspect_result=$(docker inspect $app_image)
 if [ "[]" == "$inspect_result" ]; then
